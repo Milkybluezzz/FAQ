@@ -84,7 +84,7 @@
     
     <header class="hero-section">
         <div class="content">
-            <h1>Selamat Datang di BandungAppFAQ</h1>
+            <h1>Selamat Datang di BandungAppFAQ </h1>
             <p>Platform informasi lengkap terkait Aplikasi Bandung.</p>
             <a href="#about" class="btn">Learn More</a>
         </div>
@@ -144,9 +144,7 @@
         <p>Jika Anda memiliki pertanyaan, jangan ragu untuk <a href="mailto:support@bandungappfaq.com">Hubungi kami</a>.</p>
     </section>
 
-    <footer class="footer">
-        <p>&copy; 2024 BandungAppFAQ. All rights reserved.</p>
-    </footer>
+    @include('component.footer')
 
     <script src="js/stats.js"></script>
 </body>

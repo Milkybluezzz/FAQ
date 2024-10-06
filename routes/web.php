@@ -18,12 +18,6 @@ Route::get('/create-admin', [AdminAuthController::class, 'createAdmin']);
 
 
 Route::get('/', function () {
-    return view('login');
-});
-
-Route::post('/login', [AuthController::class, 'login']);
-
-Route::get('/home', function () {
     return view('home', ['nama' => 'Radithia']);
 });
 

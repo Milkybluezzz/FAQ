@@ -73,7 +73,7 @@
             <a href="#">BandungAppFAQ</a>
         </div>
         <ul class="navbar-menu">
-            <li><a href="/home">Beranda</a></li>
+            <li><a href="/">Beranda</a></li>
             <li><a href="#about">Tentang</a></li>
             <li><a href="/FAQ">FAQ</a></li>
             <li><a href="/contact">Kontak</a></li>
