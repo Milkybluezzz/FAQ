@@ -133,9 +133,24 @@
     <section id="faq" class="content-section">
         <h2>Frequently Asked Questions</h2>
         <ul>
-            <li>apa itu BandungAppFAQ?</li>
-            <li>Bagaimana cara menggunakan platform ini?</li>
-            <li>Di mana saya dapat menemukan informasi lebih lanjut?</li>
+            <li>
+                <a class="question" onclick="toggleAnswer(1)">Apa itu BandungAppFAQ?</a>
+                <p id="answer1" class="answer" style="display:none;">
+                    BandungAppFAQ adalah platform yang menyediakan informasi dan FAQ mengenai aplikasi-aplikasi yang ada di Kota Bandung.
+                </p>
+            </li>
+            <li>
+                <a class="question" onclick="toggleAnswer(2)">Bagaimana cara menggunakan platform ini?</a>
+                <p id="answer2" class="answer" style="display:none;">
+                    Anda dapat mencari aplikasi yang tersedia, membaca FAQ terkait, dan mempelajari cara menggunakan aplikasi melalui platform ini.
+                </p>
+            </li>
+            <li>
+                <a class="question" onclick="toggleAnswer(3)">Di mana saya dapat menemukan informasi lebih lanjut?</a>
+                <p id="answer3" class="answer" style="display:none;">
+                    Informasi lebih lanjut dapat ditemukan di halaman "Kontak" atau melalui dukungan pelanggan kami.
+                </p>
+            </li>
         </ul>
     </section>
 

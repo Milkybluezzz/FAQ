@@ -24,3 +24,13 @@ document.addEventListener("DOMContentLoaded", function() {
         chartContainer.appendChild(bar);
     });
 });
+
+function toggleAnswer(event, answerId) {
+    event.preventDefault();  // Prevent the page from jumping to the top
+    var answer = document.getElementById("answer" + answerId);
+    if (answer.style.display === "none") {
+        answer.style.display = "block";
+    } else {
+        answer.style.display = "none";
+    }
+}
