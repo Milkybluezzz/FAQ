@@ -5,79 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<style>
-    .navbar {
-    background: linear-gradient(90deg, #003078, #4804b5);
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; 
-}
-.navbar-brand a {
-    color: #ffffff; 
-    font-size: 28px;
-    font-weight: bold;
-    letter-spacing: 1px;
-  }
-  
-
-.navbar-menu {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-.navbar-menu li {
-    margin-left: 30px;
-}
-
-.navbar-menu a {
-    color: #ffffff; /* darker blue */
-    font-size: 18px;
-    position: relative;
-    transition: color 0.3s;
-  }
-
-.navbar-menu a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    background-color: #ffcc00;
-    left: 0;
-    bottom: -5px;
-    transition: width 0.3s;
-}
-
-.navbar-menu a:hover {
-    color: #ffcc00; /* bright orange */
-  }
-
-.navbar-menu a:hover::after {
-    width: 100%;
-    background-color: #ffcc00; /* bright orange */
-}
-
-</style>
 <body>
-    <nav class="navbar">
-        <div class="navbar-brand">
-            <a href="#">BandungAppFAQ</a>
+    <nav class="bg-gradient-to-r from-blue-900 to-blue-500 py-4 px-8 fixed top-0 left-0 w-full shadow-lg z-50 flex justify-between items-center">
+        <div class="text-white text-2xl font-bold tracking-wider">
+            <a href="/">BandungAppFAQ</a>
         </div>
-        <ul class="navbar-menu">
-            <li><a href="/">Beranda</a></li>
-            <li><a href="#about">Tentang</a></li>
-            <li><a href="/FAQ">FAQ</a></li>
-            <li><a href="/contact">Kontak</a></li>
+        <!-- Mobile Menu Toggle -->
+        <div class="md:hidden">
+            <button id="menuToggle" class="text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Menu Items -->
+       <div class="flex items-center space-x-10 list-none">
+            <li>
+                <a href="/" class="text-white text-lg relative group">
+                    Beranda
+                    <span class="block absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </li>
+            <li>
+                <a href="/FAQ" class="text-white text-lg relative group">
+                    FAQ
+                    <span class="block absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </li>
         </ul>
+        <!-- Search Form -->
+        <div class="hidden md:block">
+            <form action="{{ route('faq.index') }}" method="GET" class="flex items-center">
+                <input type="text" name="search" placeholder="Cari aplikasi..." class="p-2 border border-gray-300 rounded" aria-label="Search">
+                <button type="submit" class="bg-blue-500 text-white p-2 rounded ml-2">Cari</button>
+            </form>
+        </div>
     </nav>
+    
 </body>
 </html>

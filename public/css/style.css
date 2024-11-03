@@ -110,8 +110,9 @@ a {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+
 /* Stats Sections */
-.dashboard-container {
+/* .dashboard-container {
     width: 90%;
     margin: auto;
     padding: 20px;
@@ -150,72 +151,17 @@ h1 {
     margin-top: 10px;
 }
 
-.stats {
-    padding: 20px;
-    background-color: #f4f4f4;
-    margin: 20px auto;
-    max-width: 800px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.chart-container {
+    margin: 20px 0;
 }
 
-.stat-item {
-    margin-bottom: 20px;
-}
-
-.stat-item h3 {
-    color: #333;
-    font-size: 20px;
-}
-
-#most-accessed-faqs {
-    list-style: none;
-    padding: 0;
-}
-
-#most-accessed-faqs li {
-    font-size: 18px;
-    color: #007BFF;
-    margin-bottom: 5px;
-}
-
-.charts-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.chart-box {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 30%;
-    margin-bottom: 20px;
-}
-
-.chart-box h2 {
-    margin: 0 0 20px;
+.bar-chart-title {
+    text-align: center;
     font-size: 18px;
     color: #555;
-}
+    margin-bottom: 10px;
+} */
 
-#employeePerformanceTable {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-#employeePerformanceTable th,
-#employeePerformanceTable td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-}
-
-#employeePerformanceTable th {
-    background-color: #003078;
-    color: white;
-}
 
 /* Content Sections */
 .content-section {
@@ -265,14 +211,4 @@ h1 {
 
 .content-section li:hover {
     color: #007bff;
-}
-
-/* Footer */
-.footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-    border-top: 5px solid #ffcc00;
 }

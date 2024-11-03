@@ -6,14 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BandungAppFAQ - Home</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ asset('/img/logologo.png') }}" type="image" class="rounded">
     <script src="https://cdn.tailwindcss.com">
     </script>
 </head>
 <style>
+    body{
+        
+    }
+    ::-webkit-scrollbar {
+            display: none;  /* Ini akan menyembunyikan scroll bar */
+        }
+
         .hero-section {
         position: relative;
         height: 30vh;
-        background-image: linear-gradient(to bottom, #0a5ac2, #3498db); /* Add a subtle gradient to the background */
+        background-image: linear-gradient(to bottom, #004db1, #4fadec); /* Add a subtle gradient to the background */
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -21,7 +32,47 @@
         text-align: center;
         color: white;
         overflow: hidden;
+        opacity: 0;
+        animation: fadeIn 2s forwards;
         }
+
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .typewriter {
+            font-family: monospace;
+            white-space: nowrap;
+            overflow: hidden;
+            font-size: 15px;
+            border-right: 3px solid;
+            animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: rgb(255, 255, 255); }
+        }
+
+
+        .zoom-in {
+        animation: zoomIn 1.5s ease-in-out forwards;
+        max-width: 20rem;
+    }
+
+    @keyframes zoomIn {
+        from { transform: scale(0.5); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
 
         .hero-section-inner {
         overflow: hidden;
@@ -84,9 +135,12 @@
     
     <header class="hero-section">
         <div class="content">
-            <h1>Selamat Datang di BandungAppFAQ </h1>
+            <div class="flex justify-center">
+                <img src="/img/—Pngtree—vector icon gedung sate bandung_6584866.png" alt="Deskripsi Gambar" class="zoom-in">
+            </div>
+            <h1 class="typewriter">Selamat Datang di BandungAppFAQ </h1>
             <p>Platform informasi lengkap terkait Aplikasi Bandung.</p>
-            <a href="#about" class="btn">Learn More</a>
+            <a href="#about" class="btn">Baca Selanjutnya</a>
         </div>
         <div class="wave">
             <svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
@@ -97,40 +151,52 @@
 
 
     <!-- Statistik Section -->
-    <div class="dashboard-container">
-        <h1>BandungAppFAQ Stats</h1>
-
-        <div class="stats-container">
-            <div class="stat-box">
-                <h2>Jumlah Aplikasi</h2>
-                <p id="total-apps">0</p>
+    <div class="w-11/12 mx-auto p-5">
+        <h1 class="text-4xl font-bold text-center text-gray-800">BandungAppFAQ Stats</h1>
+    
+        <div class="flex justify-around mt-6 mx-6">
+            <div class="bg-white rounded-lg shadow-md p-5 w-1/3 text-center mx-6">
+                <h2 class="text-xl font-semibold text-gray-600">Jumlah Aplikasi</h2>
+                <p id="total-apps" class="text-4xl text-blue-800 mt-2">{{ 'totalApps' }}</p>
             </div>
-            <div class="stat-box">
-                <h2>Jumlah FAQ Terdaftar</h2>
-                <p id="total-faqs">0</p>
+            <div class="bg-white rounded-lg shadow-md p-5 w-1/3 text-center mx-6">
+                <h2 class="text-xl font-semibold text-gray-600">Jumlah FAQ Terdaftar</h2>
+                <p id="total-faqs" class="text-4xl text-blue-800 mt-2">{{ 'totalFAQs' }}</p>
             </div>
-            <div class="stat-box">
-                <h2>FAQ yang Sering Diakses</h2>
-                <p id="most-accessed-faq">Loading...</p>
+            <div class="bg-white rounded-lg shadow-md p-5 w-1/3 text-center mx-6">
+                <h2 class="text-xl font-semibold text-gray-600">FAQ yang Sering Diakses</h2>
+                <p id="most-accessed-faq" class="text-4xl text-blue-800 mt-2">Loading...</p>
             </div>
         </div>
-            <div class="chart-container">
-                <div class="bar-chart-title">Aplikasi yang Paling sering Diakses</div>
-                <div id="chart"></div>
-            </div>
+    
+        <div class="mt-8">
+            <div class="text-center text-lg font-semibold text-gray-600 mb-4">Aplikasi yang Paling Sering Diakses</div>
+            <div id="chart" class="bg-white p-5 rounded-lg shadow-md "></div>
         </div>
     </div>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <section id="about" class="content-section">
-        <h2>Tentang BandungAppFAQ</h2>
-        <p>BandungAppFAQ adalah sebuah platform yang dirancang khusus untuk membantu pengguna aplikasi-aplikasi di Kota Bandung dengan menyediakan
+    <section id="about" class="content-section relative">
+        <img src="/img/batik biru final.png" alt="Batik Biru" class="absolute top-0 right-0 w-96 h-auto">
+        <img src="/img/batik biru final.png" alt="Batik Biru" class="absolute bottom-0 left-0 w-96 h-auto transform scale-x-[-1] scale-y-[-1]">
+        <img src="/img/batik kuning final.png" alt="Batik kuning" class="absolute bottom-0 right-0 w-96 h-auto">
+        <img src="/img/batik kuning final.png" alt="Batik kuning"  class="absolute top-0 left-0 w-96 h-auto transform scale-x-[-1] scale-y-[-1]">
+        <div class="relative z-10 flex items-center justify-center">
+            <h2 class="text-black text-3xl font-bold">Tentang BandungAppFAQ</h2>
+        </div>
+        <p class="mt-4 text-lg text-center max-w-2xl mx-auto relative z-10">BandungAppFAQ adalah sebuah platform yang dirancang khusus untuk membantu pengguna aplikasi-aplikasi di Kota Bandung dengan menyediakan
            informasi dan jawaban atas pertanyaan yang sering diajukan (FAQ). Melalui situs ini, pengguna dapat dengan mudah menemukan solusi atas
            berbagai masalah yang mungkin mereka hadapi saat menggunakan aplikasi yang disediakan oleh pemerintah atau organisasi lain di kota ini.</p>
     </section>
+    
 
-    <section id="faq" class="content-section">
+    <section id="faq" class="content-section relative">
+        <img src="/img/batik biru final.png" alt="Batik Biru" class="absolute bottom-0 right-0 w-96 h-auto transform  scale-y-[-1]">
+        <img src="/img/batik biru final.png" alt="Batik Biru" class="absolute top-0 left-0 w-96 h-auto scale-x-[-1]">
+        <img src="/img/batik kuning final.png" alt="Batik kuning" class="absolute top-0 right-0 w-96 h-auto transform scale-x-[-1] scale-y-[-1]">
+        <img src="/img/batik kuning final.png" alt="Batik kuning"  class="absolute bottom-0 left-0 w-96 h-auto ">
         <h2>Frequently Asked Questions</h2>
         <ul>
             <li>
@@ -154,7 +220,11 @@
         </ul>
     </section>
 
-    <section id="contact" class="content-section">
+    <section id="contact" class="content-section relative">
+        <img src="/img/batik biru final.png" alt="Batik Biru" class="absolute top-0 right-0 w-96 h-auto">
+        <img src="/img/batik biru final.png" alt="Batik Biru" class="absolute bottom-0 left-0 w-96 h-auto transform scale-x-[-1] scale-y-[-1]">
+        <img src="/img/batik kuning final.png" alt="Batik kuning" class="absolute bottom-0 right-0 w-96 h-auto">
+        <img src="/img/batik kuning final.png" alt="Batik kuning"  class="absolute top-0 left-0 w-96 h-auto transform scale-x-[-1] scale-y-[-1]">
         <h2>Hubungi kami</h2>
         <p>Jika Anda memiliki pertanyaan, jangan ragu untuk <a href="mailto:support@bandungappfaq.com">Hubungi kami</a>.</p>
     </section>

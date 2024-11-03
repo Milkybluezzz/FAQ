@@ -15,10 +15,7 @@
         {
             "src": "/(.*)",
             "dest": "/api/index.php"
-        },
-        {
-            "rewrites": [{ "source": "/", "destination": "/index.html" }]
-          }
+        }
           
     ],
    "public": true,
@@ -38,5 +35,6 @@
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie"
     }
+    
 }
 

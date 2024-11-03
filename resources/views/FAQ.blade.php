@@ -6,66 +6,72 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BandungAppFAQ</title>
     <link rel="stylesheet" href="css/FAQ.css">
+    <link rel="icon" href="{{ asset('/img/logobandungAppFAQ.png') }}" type="image">
 </head>
 <body>
   <script src="https://cdn.tailwindcss.com">
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
  </head>
- <body class="bg-gray-100 font-roboto pt-20">
+ <body class="bg-gray-100 font-roboto pt-20 ">
+    
 
 
     @include('component.navbar')
 
 
-  <div class="container mx-auto p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <!-- Card 1 -->
-        <div class="bg-white p-4 rounded-lg shadow-md">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                    <img alt="AngularJS image" class="w-8 h-8 rounded-full" src="/img/logo_pesona.png">
-                    <div class="ml-2">
-                        <h2 class="text-lg font-bold">Pesona</h2>
-                        <p class="text-sm text-gray-500">Pengelolaan Surat Online dan Arsip
-                            Pemerintah Kota Bandung</p>
+
+    {{-- <div class="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 justify-center">
+        @if(isset($applications) && count($applications) > 0)
+            @foreach($applications as $app)
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <img alt="{{ $app['name'] }} image" class="w-8 h-8 rounded-full" src="{{ $app['image'] }}">
+                            <div class="ml-2">
+                                <h2 class="text-lg font-bold">{{ $app['name'] }}</h2>
+                                <p class="text-sm text-gray-500">{{ $app['tagline'] }}</p>
+                            </div>
+                        </div>
                     </div>
+                    <p class="mt-2 text-gray-600">{{ $app['description'] }}</p>
+                    <button class="mt-4 bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded" onclick="window.location.href='{{ $app['link'] }}'">Continue</button>
                 </div>
-                <span class="bg-blue-100 text-blue-500 text-xs font-semibold px-2 py-1 rounded">Ongoing</span>
-            </div>
-            <p class="mt-2 text-gray-600">Pesona Bandung adalah aplikasi manajemen korespondensi dan arsip digital untuk Pemerintah Kota Bandung. Aplikasi ini memungkinkan pengguna yang memiliki akun email resmi @bandung.go.id untuk mengelola surat dan arsip dengan mudah, sebagai pengganti dari sistem Surat Online sebelumnya.</p>
-            <button class="mt-4 bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded" onclick="window.location.href='angularjs.html'">Continue</button>
-        </div>
-        <!-- Card 2 -->
-        <div class="bg-white p-4 rounded-lg shadow-md">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                    <img alt="Codeigniter image" class="w-8 h-8 rounded-full" src="/img/Logo_kota_Bandung.png">
-                    <div class="ml-2">
-                        <h2 class="text-lg font-bold">PMO</h2>
-                        <p class="text-sm text-gray-500">Project Management Officer</p>
+            @endforeach
+        @else
+            <p class="text-gray-500">Tidak ada aplikasi yang ditemukan.</p>
+        @endif
+    </div> --}}
+
+    <div class="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 justify-center">
+        @if(isset($applications) && count($applications) > 0)
+            @foreach($applications as $app)
+                <div class="max-w-xs rounded overflow-hidden shadow-lg bg-white border">
+                    <!-- Bagian gambar -->
+                    <div class="bg-white h-48 flex items-center justify-center">
+                        <img alt="{{ $app['name'] }} image" class="object-contain h-full w-full" src="{{ $app['image'] }}">
                     </div>
-                </div>
-                <span class="bg-blue-100 text-blue-500 text-xs font-semibold px-2 py-1 rounded">Ongoing</span>
-            </div>
-            <p class="mt-2 text-gray-600">PMO Project Management Officer Pemerintah Kota Bandung bertugas untuk mengelola aset, usulan pembuatan, dan pengembangan sistem digital. Project Management Office (PMO) adalah struktur organisasi yang memberikan dukungan untuk proyek. PMO dapat berupa kantor manajemen proyek, program, atau portofolio, tergantung pada apa yang didukung.</p>
-            <button class="mt-4 bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded" onclick="window.location.href='sketch.html'">Continue</button>
-        </div>
-        <!-- Card 3 -->
-        <div class="bg-white p-4 rounded-lg shadow-md">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                    <img alt="Laravel image" class="w-8 h-8 rounded-full" src="/img/e-penting logo.png">
-                    <div class="ml-2">
-                        <h2 class="text-lg font-bold">e-penting</h2>
-                        <p class="text-sm text-gray-500">Elektronik Pencatatan Stunting</p>
+                    <!-- Bagian konten -->
+                    <div class="px-4 py-4">
+                        <div class="font-bold text-lg mb-2 ">{{ $app['name'] }}</div>
+                        <p class="text-gray-700 text-sm ">{{ $app['description'] }}</p>
                     </div>
+                    <!-- Tombol -->
+                    <div class="px-4 pb-4 text-end ">
+                        <a href="{{ $app['link'] }}" class="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded">Selanjutnya</a>                    </div>
                 </div>
-                <span class="bg-blue-100 text-blue-500 text-xs font-semibold px-2 py-1 rounded">Ongoing</span>
-            </div>
-            <p class="mt-2 text-gray-600">E-Penting adalah aplikasi elektronik pencatatan stunting yang digunakan di Kota Bandung. Aplikasi ini bertujuan untuk meningkatkan tata kelola data stunting dengan mendapatkan data yang akurat dan membantu analisis data.</p>
-            <button class="mt-4 bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded" onclick="window.location.href='/FAQ/e-pentingFAQ'">Continue</button>
-        </div>
-        <!-- Card 4 -->
+            @endforeach
+        @else
+            <p class="text-gray-500">Tidak ada aplikasi yang ditemukan.</p>
+        @endif
+    </div>
+    
+    
+    
+        
+<!-- Card 4 -->
         {{-- <div class="bg-white p-4 rounded-lg shadow-md">
             <div class="flex justify-between items-center">
                 <div class="flex items-center">
@@ -80,7 +86,7 @@
             <p class="mt-2 text-gray-600">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur fugiat eligendi dignissimos cumque maiores rem delectus aut. Nulla fuga atque, ad aliquid quisquam autem consectetur illo tempora? Ipsa, fugiat mollitia.</p>
             <button class="mt-4 bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded" onclick="window.location.href='nodejs.html'">Continue</button>
         </div>
-        <!-- Card 5 -->
+<!-- Card 5 -->
         <div class="bg-white p-4 rounded-lg shadow-md">
             <div class="flex justify-between items-center">
                 <div class="flex items-center">
@@ -95,7 +101,7 @@
             <p class="mt-2 text-gray-600">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis atque accusantium aliquam eaque est accusamus rerum dolore reiciendis nesciunt, rem quasi consequuntur dignissimos commodi consectetur maiores, id natus quis tempora?</p>
             <button class="mt-4 bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded" onclick="window.location.href='sketch.html'">Continue</button>
         </div>
-        <!-- Card 6 -->
+<!-- Card 6 -->
         <div class="bg-white p-4 rounded-lg shadow-md">
             <div class="flex justify-between items-center">
                 <div class="flex items-center">
@@ -109,7 +115,7 @@
             </div>
             <p class="mt-2 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque consequuntur, vero dolore rerum possimus aliquid in dignissimos consequatur molestiae ab. Quasi at est minima deleniti dolore libero explicabo. Explicabo, iusto.</p>
             <button class="mt-4 bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded" onclick="window.location.href='sketch.html'">Continue</button>        </div>
-        <!-- Card 7 -->
+<!-- Card 7 -->
         <div class="bg-white p-4 rounded-lg shadow-md">
             <div class="flex justify-between items-center">
                 <div class="flex items-center">
@@ -123,7 +129,7 @@
              </div>
             <p class="mt-2 text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dignissimos nihil illo ratione. Aperiam, voluptas perspiciatis temporibus, vel asperiores excepturi rem sequi ipsam explicabo nemo cupiditate similique repellendus reiciendis magni.</p>
             <button class="mt-4 bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded" onclick="window.location.href='sketch.html'">Continue</button>        </div>
-        <!-- Card 8 -->
+<!-- Card 8 -->
         <div class="bg-white p-4 rounded-lg shadow-md">
             <div class="flex justify-between items-center">
                 <div class="flex items-center">
