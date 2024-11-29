@@ -45,54 +45,34 @@
         @endif
     </div> --}}
 
-    <div class="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 justify-center">
-        @if(isset($applications) && count($applications) > 0)
-            @foreach($applications as $app)
-                <div class="max-w-xs rounded overflow-hidden shadow-lg bg-white border">
-                    <!-- Bagian gambar -->
-                    <div class="bg-white h-48 flex items-center justify-center">
-                        <img alt="{{ $app['name'] }} image" class="object-contain h-full w-full" src="{{ $app['image'] }}">
-                    </div>
-                    <!-- Bagian konten -->
-                    <div class="px-4 py-4">
-                        <div class="font-bold text-lg mb-2 ">{{ $app['name'] }}</div>
-                        <p class="text-gray-700 text-sm ">{{ $app['description'] }}</p>
-                    </div>
-                    <!-- Tombol -->
-                    <div class="px-4 pb-4 text-end ">
-                        <a href="{{ $app['link'] }}" class="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded">Selanjutnya</a>                    </div>
-                </div>
-            @endforeach
-        @else
-            <p class="text-gray-500">Tidak ada aplikasi yang ditemukan.</p>
-        @endif
-        <h1>test</h1>
+
+
         @if (isset($content))
         
-            <p>data ada</p>
         
         
         @else
         <h1>no content</h1>
         @endif
 
-          
+          @foreach ( $content as $c)
     
         <div class="max-w-xs rounded overflow-hidden shadow-lg bg-white border">
             <!-- Bagian gambar -->
             <div class="bg-white h-48 flex items-center justify-center">
-                <img alt="{{ $app['name'] }} image" class="object-contain h-full w-full" src="">
+                <img class="object-contain h-full w-full" src="{{ Storage::url($c->gambar) }}">
             </div>
             <!-- Bagian konten -->
             <div class="px-4 py-4">
-                <div class="font-bold text-lg mb-2 "></div>
-                <p class="text-gray-700 text-sm "></p>
+                <div class="font-bold text-lg mb-2 ">{{ $c->title }}</div>
+                <p class="text-gray-700 text-sm ">{{ $c->deskripsi }}</p>
             </div>
             <!-- Tombol -->
             <div class="px-4 pb-4 text-end ">
-                <a href="{{ $app['link'] }}" class="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded">Selanjutnya</a>                    </div>
+                <a href="{{ url('/FAQ/e-pentingFAQ') }}" class="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded" >Selanjutnya</a>                    
+            </div>
         </div>
-
+        @endforeach
     </div>
     
     

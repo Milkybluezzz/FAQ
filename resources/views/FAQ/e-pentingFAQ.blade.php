@@ -62,7 +62,7 @@
             ];
         @endphp
 
-        @foreach ($faqs as $index => $faq)
+        @foreach ($faqs as $index)
             <div class="border border-gray-300 rounded-md mb-2">
                 <button class="w-full text-left p-4 flex justify-between items-center" onclick="toggleAnswer('answer{{ $index }}', this)">
                     <span>{{ $faq['question'] }}</span>

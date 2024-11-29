@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\PageController;
 
 Route::get('/FAQ', [FaqController::class, 'index']);
 // use App\Http\Controllers\AdminAuthController;
@@ -22,9 +23,7 @@ Route::get('/FAQ', [FaqController::class, 'index']);
 
 Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [PageController::class, 'index']);
 
 Route::get('/about', function () {
     return view('about');

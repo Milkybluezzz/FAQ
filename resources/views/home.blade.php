@@ -157,11 +157,11 @@
         <div class="flex justify-around mt-6 mx-6">
             <div class="bg-white rounded-lg shadow-md p-5 w-1/3 text-center mx-6">
                 <h2 class="text-xl font-semibold text-gray-600">Jumlah Aplikasi</h2>
-                <p id="total-apps" class="text-4xl text-blue-800 mt-2">{{ 'totalApps' }}</p>
+                <p id="total-apps" class="text-4xl text-blue-800 mt-2">{{ $jmlcontent }}</p>
             </div>
             <div class="bg-white rounded-lg shadow-md p-5 w-1/3 text-center mx-6">
                 <h2 class="text-xl font-semibold text-gray-600">Jumlah FAQ Terdaftar</h2>
-                <p id="total-faqs" class="text-4xl text-blue-800 mt-2">{{ 'totalFAQs' }}</p>
+                <p id="total-faqs" class="text-4xl text-blue-800 mt-2">{{ $jmlfaq }}</p>
             </div>
             <div class="bg-white rounded-lg shadow-md p-5 w-1/3 text-center mx-6">
                 <h2 class="text-xl font-semibold text-gray-600">FAQ yang Sering Diakses</h2>
