@@ -3,9 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\FAQController;
+use App\Http\Controllers\FaqController;
 
-Route::get('/FAQ', [FAQController::class, 'index']);
+Route::get('/FAQ', [FaqController::class, 'index']);
 // use App\Http\Controllers\AdminAuthController;
 
 // Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
@@ -34,13 +34,8 @@ Route::get('/blog', function () {
     return view('blog');
 });
 
-Route::get('/FAQ', function () {
-    return view('FAQ');
-});
 
-Route::get('/FAQ/e-pentingFAQ', function () {
-    return view('faq.e-pentingFAQ');
-});
+Route::get('/FAQ/e-pentingFAQ', [FaqController::class, 'FAQ']);
 
 Route::get('/FAQ/pmoFAQ', function () {
     return view('faq/pmoFAQ');

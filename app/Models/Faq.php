@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Faq extends Model
 {
-    protected $table = 'Faq';
+    protected $table = 'faq';
     
     use HasFactory;
 
-    protected $fillable = ['question', 'answer'];
+    protected $fillable = ['judul', 'deskripsi', 'pertanyaan', 'jawaban'];
 
     public function application()
     {

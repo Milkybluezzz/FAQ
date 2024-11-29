@@ -66,6 +66,33 @@
         @else
             <p class="text-gray-500">Tidak ada aplikasi yang ditemukan.</p>
         @endif
+        <h1>test</h1>
+        @if (isset($content))
+        
+            <p>data ada</p>
+        
+        
+        @else
+        <h1>no content</h1>
+        @endif
+
+          
+    
+        <div class="max-w-xs rounded overflow-hidden shadow-lg bg-white border">
+            <!-- Bagian gambar -->
+            <div class="bg-white h-48 flex items-center justify-center">
+                <img alt="{{ $app['name'] }} image" class="object-contain h-full w-full" src="">
+            </div>
+            <!-- Bagian konten -->
+            <div class="px-4 py-4">
+                <div class="font-bold text-lg mb-2 "></div>
+                <p class="text-gray-700 text-sm "></p>
+            </div>
+            <!-- Tombol -->
+            <div class="px-4 pb-4 text-end ">
+                <a href="{{ $app['link'] }}" class="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded">Selanjutnya</a>                    </div>
+        </div>
+
     </div>
     
     

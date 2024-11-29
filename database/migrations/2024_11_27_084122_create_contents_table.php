@@ -9,15 +9,16 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::rename('faqs', 'Faq');
-        Schema::create('Faq', function (Blueprint $table) {
+        Schema::create('contents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('application_id')->constrained('applications')->onDelete('cascade');
-            $table->string('question');
-            $table->text('answer');
+            $table->string('gambar');
+            $table->string('title');
+            $table->string('deskripsi');
+            $table->string('faq_id');
             $table->timestamps();
+
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Faq');
+        Schema::dropIfExists('contents');
     }
 };

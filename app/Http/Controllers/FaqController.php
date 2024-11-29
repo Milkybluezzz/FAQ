@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Faq;
 use Illuminate\Http\Request;
+use App\Models\Content;
 
-class FAQController extends Controller
+
+class FaqController extends Controller
 {
 
     public function index(Request $request)
@@ -51,9 +53,21 @@ class FAQController extends Controller
 
     // Pastikan $applications selalu array, meskipun hasil kosong
     $applications = array_values($applications); // Reset keys
+    $content = Content::all();
 
-    return view('FAQ', ['applications' => $applications]);
+
+    return view('FAQ', ['applications' => $applications], compact('content'));
 }
 
-    
+    public function FAQ()
+    {
+        $faqTes = Faq::all();
+        return view('FAQ.e-pentingFAQ', compact('faqTes'));
+    }
+
+    public function singleFaq()
+    {
+        $singleFaq = Faq::where('id', 1)->first();
+        return view('FAQ.e-pentingFAQ', compact('singleFaq'));
+    }
 }
