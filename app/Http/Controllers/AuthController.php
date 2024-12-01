@@ -31,5 +31,7 @@ class AuthController extends Controller
         // Redirect ke halaman home
         return redirect('/home');
     }
+
+
 }
 

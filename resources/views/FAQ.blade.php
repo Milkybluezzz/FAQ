@@ -17,8 +17,39 @@
 
     @include('component.navbar')
 
+    <form action="{{url('/FAQ')}}" method="get">   
+        <input type="text" name="search" id="" placeholder="Cari Konten">
+        <button type="submit">Search</button>
+    </form>
+    <a href="{{url('/FAQ')}}" style="">refresh</a>
+@if ($content->isEmpty())
+    <p>tidak ada konten</p>
+@endif
+@if($content)
+    <div class="container mx-auto p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    @foreach($content as $content)
+    <div class="bg-white p-4 rounded-lg shadow-md">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <img alt="AngularJS image" class="w-8 h-8 rounded-full" src="/img/logo_pesona.png">
+                    <div class="ml-2">
+                        <h2 class="text-lg font-bold">{{$content->title}}</h2>
+                        <p>{{$content->faq_id}}</p>
+                        <p class="text-sm text-gray-500">Pengelolaan Surat Online dan Arsip
+                            Pemerintah Kota Bandung</p>
+                    </div>
+                </div>
+                <span class="bg-blue-100 text-blue-500 text-xs font-semibold px-2 py-1 rounded">Ongoing</span>
+            </div>
+            <p class="mt-2 text-gray-600">Pesona Bandung adalah aplikasi manajemen korespondensi dan arsip digital untuk Pemerintah Kota Bandung. Aplikasi ini memungkinkan pengguna yang memiliki akun email resmi @bandung.go.id untuk mengelola surat dan arsip dengan mudah, sebagai pengganti dari sistem Surat Online sebelumnya.</p>
+            <button class="mt-4 bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded" onclick="window.location.href='angularjs.html'">Continue</button>
+            <a href="{{url('FAQ/'.$content->faq_id)}}">lihat selanjutnya</a>
+        </div>
+    @endforeach
+    </div>
 
-  <div class="container mx-auto p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    @else   
+    <div class="container mx-auto p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <!-- Card 1 -->
         <div class="bg-white p-4 rounded-lg shadow-md">
             <div class="flex justify-between items-center">
@@ -194,6 +225,11 @@
                             <p class="mt-2 text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt cumque quam velit dolores atque hic, voluptate, tempora numquam error distinctio, qui excepturi. Illo fuga minus atque libero magni, maxime incidunt?</p>
                             <button class="mt-4 bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded" onclick="window.location.href='sketch.html'">Continue</button>        </div> --}}
     </div>
+@endif
+
+
+
+
     </div>
 
 </body>

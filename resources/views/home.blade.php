@@ -103,15 +103,15 @@
         <div class="stats-container">
             <div class="stat-box">
                 <h2>Jumlah Aplikasi</h2>
-                <p id="total-apps">0</p>
+                <p id="total-apps">0</p>  <!---- Ini bisa diganti jadi {{ $content }} -->
             </div>
             <div class="stat-box">
                 <h2>Jumlah FAQ Terdaftar</h2>
-                <p id="total-faqs">0</p>
+                <p id="total-faqs">0</p> <!---- Ini bisa diganti jadi {{ $faq }} -->
             </div>
             <div class="stat-box">
                 <h2>FAQ yang Sering Diakses</h2>
-                <p id="most-accessed-faq">Loading...</p>
+                <p id="most-accessed-faq">Loading...</p> 
             </div>
         </div>
             <div class="chart-container">

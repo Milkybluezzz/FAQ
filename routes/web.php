@@ -3,23 +3,22 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\WebController;
+use App\Http\Middleware\AdminMiddleware;
+use PHPUnit\Framework\Attributes\Group;
 
 Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
 Route::post('admin/login', [AdminAuthController::class, 'login']);
 Route::post('admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
-Route::group(['middleware' => 'admin'], function () {
-    Route::get('/admin/home', function () {
-        return view('admin.home');
-    });
+Route::middleware(AdminMiddleware::class)->group(function () {
+    Route::get('/admin/dashboard/test', [AdminAuthController::class, 'dashboard']);
 });
 
 Route::get('/create-admin', [AdminAuthController::class, 'createAdmin']);
 
 
-Route::get('/', function () {
-    return view('home', ['nama' => 'Radithia']);
-});
+
 
 Route::get('/about', function () {
     return view('about');
@@ -33,12 +32,38 @@ Route::get('/contact', function () {
     return view('contact', ['username' => 'radithiaannafi']);
 });
 
-Route::get('/FAQ', function () {
-    return view('FAQ');
+Route::get('/FAQ/e-pentingFAQ', function () {
+    return view('faqSection.e-pentingFAQ');
 });
 
-Route::get('/FAQ/e-pentingFAQ', function () {
-    return view('faq.e-pentingFAQ');
+
+
+
+Route::controller(WebController::class)->group(function () {
+    Route::get('/','homepage');    
+    Route::get('/FAQ','search')->name('search'); 
+    Route::get('/FAQ/{id}', 'faq');
+    
+});
+
+
+Route::controller(AdminAuthController::class)->middleware(AdminMiddleware::class)->group(function () {
+
+    Route::get('/admin/dashboard', 'dashboard');
+    Route::get('/admin/content', 'addContent');
+    Route::post('/admin/content', 'createContent');
+    Route::get('/admin/content/edit/{id}', 'editContent');
+    Route::patch('/admin/content/{id}', 'updateContent');
+    Route::post('/admin/content/delete/{id}', 'deleteContent');
+
+    Route::get('/admin/FAQ/all/{id}', 'faq');
+    Route::get('/admin/FAQ/create/{id}', 'createFaq');
+    Route::post('/admin/FAQ/store/{id}', 'storeFaq');
+    Route::get('/admin/FAQ/edit/{id}', 'editFaq');
+
+    Route::patch('/admin/FAQ/update/{id}', 'updateFaq');
+    Route::post('/admin/FAQ/delete/{id}', 'deleteFaq');
+
 });
 
 

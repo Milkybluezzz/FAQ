@@ -30,16 +30,16 @@
 <body class="bg-white text-gray-900 font-sans">
 
     <div class="max-w-4xl mx-auto p-6">
-        <h1 class="text-2xl font-bold mb-4">e-penting FAQs</h1>
-        <p class="mb-4">Berikut adalah daftar pertanyaan umum mengenai aplikasi e-penting dan bagaimana penggunaannya dapat membantu dalam pencatatan stunting. Untuk melihat informasi lebih lanjut tentang penggunaan aplikasi e-penting, <a href="#" class="text-blue-600">Anda dapat membaca artikel lengkapnya di sini.</a></p>
+        <h1 class="text-2xl font-bold mb-4">{{$faq->judul ? $faq->judul : 'FAQ'}}</h1>
+        <p class="mb-4">{{$faq->deskripsi}}<a href="#" class="text-blue-600">Anda dapat membaca artikel lengkapnya di sini.</a></p>
         
         <div class="border border-gray-300 rounded-md mb-2">
             <button class="w-full text-left p-4 flex justify-between items-center" onclick="toggleAnswer('answer1', this)">
-                <span>Apa itu aplikasi e-penting?</span>
+                <span>{{$faq->pertanyaan}}</span>
                 <i class="fas fa-chevron-down no-rotate"></i>
             </button>
             <div id="answer1" class="hidden p-4">
-                <p>E-Penting adalah aplikasi elektronik pencatatan stunting yang digunakan di Kota Bandung</p>
+                <p>{{$faq->jawaban}}</p>
             </div>
         </div>
         
