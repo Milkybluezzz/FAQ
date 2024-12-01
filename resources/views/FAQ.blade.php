@@ -31,17 +31,17 @@
     <div class="bg-white p-4 rounded-lg shadow-md">
             <div class="flex justify-between items-center">
                 <div class="flex items-center">
-                    <img alt="AngularJS image" class="w-8 h-8 rounded-full" src="/img/logo_pesona.png">
+                    <img alt="AngularJS image" class="w-8 h-8 rounded-full" src="{{asset('img/'.$content->gambar)}}">
                     <div class="ml-2">
                         <h2 class="text-lg font-bold">{{$content->title}}</h2>
-                        <p>{{$content->faq_id}}</p>
+
                         <p class="text-sm text-gray-500">Pengelolaan Surat Online dan Arsip
                             Pemerintah Kota Bandung</p>
                     </div>
                 </div>
                 <span class="bg-blue-100 text-blue-500 text-xs font-semibold px-2 py-1 rounded">Ongoing</span>
             </div>
-            <p class="mt-2 text-gray-600">Pesona Bandung adalah aplikasi manajemen korespondensi dan arsip digital untuk Pemerintah Kota Bandung. Aplikasi ini memungkinkan pengguna yang memiliki akun email resmi @bandung.go.id untuk mengelola surat dan arsip dengan mudah, sebagai pengganti dari sistem Surat Online sebelumnya.</p>
+            <p class="mt-2 text-gray-600">{{$content->deskripsi}}</p>
             <button class="mt-4 bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded" onclick="window.location.href='angularjs.html'">Continue</button>
             <a href="{{url('FAQ/'.$content->faq_id)}}">lihat selanjutnya</a>
         </div>

@@ -25,7 +25,7 @@
             <td>{{ $content->deskripsi }}</td>
             <td>
 
-            <a href="{{url('/admin/FAQ/all/'.$content->id)}}">{{$content->faq ? 'edit faq' : 'tambah faq'}}</a>  
+            <a href="{{url('/admin/FAQ/all/'.$content->id)}}">{{$content ? 'edit faq' : 'tambah faq'}}</a>  
         </td>
             <td>
                 <a href="{{url('/admin/content/edit/'.$content->id)}}">Edit</a>

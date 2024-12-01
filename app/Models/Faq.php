@@ -20,7 +20,11 @@ class Faq extends Model
 
     public function content()
     {
-        return $this->hasMany(Content::class, 'id_faq', 'id');
+        return $this->hasMany(Content::class, 'faq_id', 'id');
+    }
+    public function qna()
+    {
+        return $this->hasMany(Qna::class, 'faq_id');
     }
     
     

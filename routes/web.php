@@ -47,7 +47,7 @@ Route::controller(WebController::class)->group(function () {
 });
 
 
-Route::controller(AdminAuthController::class)->middleware(AdminMiddleware::class)->group(function () {
+Route::controller(AdminAuthController::class)->group(function () {
 
     Route::get('/admin/dashboard', 'dashboard');
     Route::get('/admin/content', 'addContent');
@@ -57,12 +57,18 @@ Route::controller(AdminAuthController::class)->middleware(AdminMiddleware::class
     Route::post('/admin/content/delete/{id}', 'deleteContent');
 
     Route::get('/admin/FAQ/all/{id}', 'faq');
+
     Route::get('/admin/FAQ/create/{id}', 'createFaq');
     Route::post('/admin/FAQ/store/{id}', 'storeFaq');
     Route::get('/admin/FAQ/edit/{id}', 'editFaq');
-
     Route::patch('/admin/FAQ/update/{id}', 'updateFaq');
     Route::post('/admin/FAQ/delete/{id}', 'deleteFaq');
+
+    Route::get('/admin/QnA/create/{id}', 'createQna');
+    Route::post('/admin/QnA/store/{id}', 'storeQna');
+    Route::get('/admin/QnA/edit/{id}', 'editQna');
+    Route::patch('/admin/QnA/update/{id}', 'updateQna');
+    Route::post('/admin/QnA/delete/{id}', 'deleteQna');
 
 });
 

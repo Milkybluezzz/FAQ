@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Content;
 use Illuminate\Http\Request;
 use App\Models\Faq;
+use App\Models\Qna;
 
 class WebController extends Controller
 {
@@ -23,11 +24,15 @@ class WebController extends Controller
         return view('FAQ', compact('content'));
     }
     public function faq($id)
-    {
-        $faq = Faq::find($id);
-
-        return view('faqSection.e-pentingFAQ', compact('faq'));
-    }
+{
+    // Use findOrFail to ensure the FAQ exists
+    $faq = Faq::findOrFail($id);
+    
+    // Get QnAs related to this specific FAQ
+    $qna = Qna::where('faq_id', $id)->get();
+    
+    return view('faqSection.e-pentingFAQ', compact('faq', 'qna'));
+}
 
     public function homepage()
     {

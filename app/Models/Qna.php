@@ -5,19 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Content extends Model
+class Qna extends Model
 {
     use HasFactory;
 
-    protected $table = 'contents';
+    protected $table = 'qna';
+
     protected $fillable = [
-        'gambar',
-        'title',
-        'deskripsi',
+        'pertanyaan',
+        'jawaban',
         'faq_id',
     ];
+
     public function faq()
     {
-        return $this->belongsTo(Faq::class, 'id');
+        return $this->belongsTo(Faq::class, 'faq_id');
     }
 }
