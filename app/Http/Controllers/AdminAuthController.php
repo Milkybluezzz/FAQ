@@ -166,8 +166,7 @@ public function storeFaq(Request $request, $id)
     $request->validate([
         'judul' => 'required',
         'deskripsi' => 'required',
-        'pertanyaan' => 'required',
-        'jawaban' => 'required',
+
     ]);
 
     // Find the content
@@ -181,8 +180,6 @@ public function storeFaq(Request $request, $id)
     $faq = Faq::create([
         'judul' => $request->judul,
         'deskripsi' => $request->deskripsi,
-        'pertanyaan' => $request->pertanyaan,
-        'jawaban' => $request->jawaban,
         'content_id' => $content->id,
         'qna_id' => $nextQnaId
     ]);
@@ -203,16 +200,14 @@ public function storeFaq(Request $request, $id)
             $request->validate([
                 'judul' => 'required',
                 'deskripsi' => 'required',
-                'pertanyaan' => 'required',
-                'jawaban' => 'required',
+
             ]);
         
             $faq = Faq::findOrFail($id); // Validasi ID
             $faq->update([
                 'judul' => $request->judul,
                 'deskripsi' => $request->deskripsi,
-                'pertanyaan' => $request->pertanyaan,
-                'jawaban' => $request->jawaban,
+
             ]);
         
             return redirect('/admin/FAQ/all/' . $faq->content_id)->with('success', 'FAQ berhasil diperbarui.');

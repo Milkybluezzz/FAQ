@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('faq', function (Blueprint $table) {
-            $table->integer('qna_id')->after('content_id');
+        Schema::create('faq', function (Blueprint $table) {
+            $table->id();
+            $table->string('judul');
+            $table->text('deskripsi');
+            $table->integer('contents_id');
+            $table->integer('qna_id');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('faq', function (Blueprint $table) {
-            $table->dropColumn('qna_id');
-        });
+        Schema::dropIfExists('faq');
     }
 };
