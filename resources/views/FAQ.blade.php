@@ -43,7 +43,7 @@
             </div>
             <p class="mt-2 text-gray-600">{{$content->deskripsi}}</p>
             <button class="mt-4 bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded" onclick="window.location.href='angularjs.html'">Continue</button>
-            <a href="{{url('FAQ/'.$content->faq_id)}}">lihat selanjutnya</a>
+            <a href="{{url('FAQ/'.$content->id)}}">lihat selanjutnya</a>
         </div>
     @endforeach
     </div>

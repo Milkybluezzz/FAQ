@@ -9,16 +9,12 @@ class Qna extends Model
 {
     use HasFactory;
 
-    protected $table = 'qna';
+    protected $table = 'qnas';
 
     protected $fillable = [
         'pertanyaan',
         'jawaban',
-        'faq_id',
     ];
 
-    public function faq()
-    {
-        return $this->belongsTo(Faq::class, 'faq_id');
-    }
+
 }

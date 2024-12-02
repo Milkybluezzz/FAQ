@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>tambah faq</h1>
             @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -26,8 +27,6 @@
 
     <input type="text" name="judul" placeholder="Judul" value="{{ old('judul', $faq->judul ?? '') }}">
     <input type="text" name="deskripsi" placeholder="Deskripsi" value="{{ old('deskripsi', $faq->deskripsi ?? '') }}">
-    <input type="text" name="pertanyaan" placeholder="Pertanyaan" value="{{ old('pertanyaan', $faq->pertanyaan ?? '') }}">
-    <textarea name="jawaban" placeholder="Jawaban">{{ old('jawaban', $faq->jawaban ?? '') }}</textarea>
     <button type="submit">{{ empty($faq) ? 'Tambah FAQ' : 'Update FAQ' }}</button>
 </form>
 

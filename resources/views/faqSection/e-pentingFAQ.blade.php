@@ -23,38 +23,44 @@
     </style>
 </head>
 <body class="bg-white text-gray-900 font-sans">
-    @if($faq)
+    {{-- Check if $faq exists and has a value --}}
+    @if($faq ?? false)
         <div class="max-w-4xl mx-auto p-6">
             <h1 class="text-2xl font-bold mb-4">{{ $faq->judul }}</h1>
             <p class="mb-4">
-                {{ $faq->deskripsi }} 
+                {{ $faq->deskripsi }}
                 <a href="#" class="text-blue-600">Anda dapat membaca artikel lengkapnya di sini.</a>
             </p>
-
-            @forelse($qna as $index => $q)
-                <div class="border border-gray-300 rounded-md mb-2">
-                    <button 
-                        class="w-full text-left p-4 flex justify-between items-center hover:bg-gray-100"
-                        onclick="toggleAnswer('answer{{ $index }}', this)"
-                    >
-                        <span class="font-semibold">{{ $q->pertanyaan }}</span>
-                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
-                    </button>
+            
+            {{-- Check if $qna exists and is not empty --}}
+            @if($qna && $qna->count() > 0)
+                @forelse($qna as $index => $q)
+                    <div class="border border-gray-300 rounded-md mb-2">
+                        <button
+                            class="w-full text-left p-4 flex justify-between items-center hover:bg-gray-100"
+                            onclick="toggleAnswer('answer{{ $index }}', this)"
+                        >
+                            <span class="font-semibold">{{ $q->pertanyaan }}</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
                     
-                    <div 
-                        id="answer{{ $index }}" 
-                        class="faq-transition p-4"
-                    >
-                        <p>{{ $q->jawaban }}</p>
+                        <div
+                            id="answer{{ $index }}"
+                            class="faq-transition p-4"
+                        >
+                            <p>{{ $q->jawaban }}</p>
+                        </div>
                     </div>
-                </div>
-            @empty
-                <p class="text-gray-600">Belum ada pertanyaan yang tersedia.</p>
-            @endforelse
+                @empty
+                    <p class="text-gray-600">Belum ada pertanyaan yang tersedia.</p>
+                @endforelse
+            @else
+                <p class="text-gray-600">Tidak ada pertanyaan yang dapat ditampilkan.</p>
+            @endif
         </div>
     @else
         <div class="text-center py-10">
-            <h1 class="text-xl text-gray-700">FAQ akan ditambahkan oleh admin segera</h1>
+            <h1 class="text-xl text-gray-700">FAQ tidak tersedia</h1>
         </div>
     @endif
 
@@ -62,7 +68,7 @@
     function toggleAnswer(answerId, button) {
         const answer = document.getElementById(answerId);
         const icon = button.querySelector('i');
-        
+       
         if (answer.classList.contains('faq-visible')) {
             answer.classList.remove('faq-visible');
             icon.classList.remove('rotate-icon');

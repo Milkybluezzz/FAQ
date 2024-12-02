@@ -9,22 +9,16 @@ class Faq extends Model
 {
     use HasFactory;
 
-    protected $table = 'faq';
+    protected $table = 'faqs';
     protected $fillable = [
         'judul',
         'deskripsi',
-        'pertanyaan',
-        'jawaban',
-        'content_id',
+        'qna_id'
         ];
 
-    public function content()
-    {
-        return $this->hasMany(Content::class, 'faq_id', 'id');
-    }
     public function qna()
     {
-        return $this->hasMany(Qna::class, 'faq_id');
+        return $this->hasMany(Qna::class);
     }
     
     

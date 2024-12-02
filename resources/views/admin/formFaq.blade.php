@@ -18,7 +18,9 @@
 
         <div class="mb-3">
             <a href="{{ url('/admin/dashboard') }}" class="btn btn-secondary me-2">Back to Content</a>
+        @if (!$faqs->count() > 0)
             <a href="{{ url('/admin/FAQ/create/' . $judul->id) }}" class="btn btn-primary">Add FAQ</a>
+        @endif
         </div>
 
         @if($faqs->count() > 0)
@@ -44,7 +46,6 @@
                                         <a href="{{ url('/admin/FAQ/edit/' . $faqItem->id) }}" class="btn btn-sm btn-warning">Edit</a>
                                         <form action="{{ url('/admin/FAQ/delete/' . $faqItem->id) }}" method="post" class="d-inline">
                                             @csrf
-                                            @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                                         </form>
                                     </div>
@@ -85,7 +86,6 @@
                                         <a href="{{ url('/admin/QnA/edit/' . $q->id) }}" class="btn btn-sm btn-warning">Edit</a>
                                         <form action="{{ url('/admin/QnA/delete/' . $q->id) }}" method="post" class="d-inline">
                                             @csrf
-                                            @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                                         </form>
                                     </div>

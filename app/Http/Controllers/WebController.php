@@ -14,7 +14,7 @@ class WebController extends Controller
         $search = $request->input('search');
 
         if (empty($search)) {
-            $content = Content::all();
+            $content = Content::with('faq')->get();
         } else {
             $content = Content::where('title', 'LIKE', "%$search%")
                         ->get();
@@ -23,23 +23,21 @@ class WebController extends Controller
 
         return view('FAQ', compact('content'));
     }
-    public function faq($id)
-{
-    // Use findOrFail to ensure the FAQ exists
-    $faq = Faq::findOrFail($id);
     
-    // Get QnAs related to this specific FAQ
-    $qna = Qna::where('faq_id', $id)->get();
-    
-    return view('faqSection.e-pentingFAQ', compact('faq', 'qna'));
-}
-
     public function homepage()
     {
         $content = Content::count();
         $faq = Faq::count();
         return view('home', compact('content', 'faq'));
     }
-
+    
+    public function faq($id)
+    {
+        $faq = Faq::where('konten_id', $id)->first();
+       
+        $qna = $faq ? Qna::where('faq_id', $faq->id)->get() : collect();
+       
+        return view('faqSection.e-pentingFAQ', compact('faq', 'qna'));
+    }
 
 }

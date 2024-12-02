@@ -9,7 +9,7 @@ class Content extends Model
 {
     use HasFactory;
 
-    protected $table = 'contents';
+    protected $table = 'konten';
     protected $fillable = [
         'gambar',
         'title',

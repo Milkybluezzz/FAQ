@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('qna', function (Blueprint $table) {
+        Schema::create('qnas', function (Blueprint $table) {
             $table->id();
             $table->string('pertanyaan');
-            $table->string('jawaban');
-            $table->integer('faq_id');
+            $table->longText('jawaban');
+            $table->foreignId('faq_id')->nullable()->constrained('faqs')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('qna');
+        Schema::dropIfExists('qnas');
     }
 };

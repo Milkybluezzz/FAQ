@@ -59,14 +59,14 @@ class AdminAuthController extends Controller
     ]);
 
 
-    $nextFaqId = Content::max('faq_id') + 1;
+
 
 
     $content = Content::create([
         'title' => $request->title,
         'deskripsi' => $request->deskripsi,
         'gambar' => $request->gambar->getClientOriginalName(),
-        'faq_id' => $nextFaqId, 
+
     ]);
 
 
@@ -142,17 +142,18 @@ class AdminAuthController extends Controller
     return redirect('/admin/dashboard')->with('success', 'Content berhasil dihapus.');
 }
 
-public function faq($faq_id)
+public function faq($id)
 {
-    $content = Content::findOrFail($faq_id);
+    $content = Content::findOrFail($id);
     
-    $faqs = Faq::where('id', $content->faq_id)->get();
-    $qna = Qna::whereIn('faq_id', $faqs->pluck('id'))->get();
+    $faqs = Faq::where('konten_id', $id)->get();
+    $faq_ids = $faqs->pluck('id');
+    $qna = Qna::whereIn('faq_id', $faq_ids)->get();
 
     return view('admin.formFaq', [
         'faqs' => $faqs, 
         'judul' => $content, 
-        'qna' => $qna
+        'qna' => $qna 
     ]);
 }
 
@@ -169,22 +170,13 @@ public function storeFaq(Request $request, $id)
 
     ]);
 
-    // Find the content
-    $content = Content::findOrFail($id);
+    $faq = new Faq();
+    $faq->judul = $request->judul;
+    $faq->deskripsi = $request->deskripsi;
+    $faq->konten_id = $id;
+    $faq->save();
 
-    // Get the maximum qna_id for this content and increment
-    $maxQnaId = Faq::where('content_id', $content->id)->max('qna_id') ?? 0;
-    $nextQnaId = $maxQnaId + 1;
-
-    // Create the FAQ
-    $faq = Faq::create([
-        'judul' => $request->judul,
-        'deskripsi' => $request->deskripsi,
-        'content_id' => $content->id,
-        'qna_id' => $nextQnaId
-    ]);
-
-    return redirect('/admin/FAQ/all/' . $content->id)
+    return redirect('/admin/FAQ/all/'. $id)
         ->with('success', 'FAQ berhasil ditambahkan.');
 }
     public function editFaq($id)
@@ -210,7 +202,7 @@ public function storeFaq(Request $request, $id)
 
             ]);
         
-            return redirect('/admin/FAQ/all/' . $faq->content_id)->with('success', 'FAQ berhasil diperbarui.');
+            return redirect('/admin/FAQ/all/' . $faq->konten_id)->with('success', 'FAQ berhasil diperbarui.');
         }
         
     public function deleteFaq($id)
@@ -218,7 +210,7 @@ public function storeFaq(Request $request, $id)
         $faq = Faq::find($id);
         $faq->delete();
     
-        return redirect('/admin/FAQ/all/' . $faq->content_id )->with('success', 'FAQ berhasil dihapus.');
+        return redirect('/admin/dashboard/' )->with('success', 'FAQ berhasil dihapus.');
     }
 
     public function createQna($faq_id)
@@ -234,23 +226,28 @@ public function storeFaq(Request $request, $id)
         'jawaban' => 'required',
     ]);
 
-    $faq = Faq::findOrFail($faq_id);
+    $faqId = Faq::findOrFail($faq_id);
 
-    Qna::create([
-        'pertanyaan' => $request->pertanyaan,
-        'jawaban' => $request->jawaban,
-        'faq_id' => $faq->id,  // This links to the specific FAQ
-        'qna_id' => $faq->qna_id  // This uses the qna_id from the FAQ
-    ]);
+    $qna = new Qna();
+    $qna->pertanyaan = $request->pertanyaan;
+    $qna->jawaban = $request->jawaban;
+    $qna->faq_id = $faqId->id;
+    $qna->save();
 
-    return redirect('/admin/FAQ/all/' . $faq->content_id)
-        ->with('success', 'Qna berhasil ditambahkan.');
+    return redirect('/admin/FAQ/all/' . $faqId->konten_id)->with('success', 'QnA berhasil dibuat.');
 }
 
     public function editQna($id)
     {
         $qna = Qna::findOrFail($id); // Pastikan ID ditemukan
         $content_id = $qna->faq_id; // Dapatkan content_id untuk digunakan di view
+
+        
+        $qna = Qna::findOrFail($id);
+        $faq = Faq::findOrFail($qna->faq_id);
+        $konten = Content::findOrFail($faq->konten_id);
+        
+
         return view('admin.formQna', compact('qna', 'content_id'));
     }
 
@@ -260,14 +257,16 @@ public function storeFaq(Request $request, $id)
             'pertanyaan' => 'required',
             'jawaban' => 'required',
         ]);
-    
+
         $qna = Qna::findOrFail($id); // Validasi ID
         $qna->update([
             'pertanyaan' => $request->pertanyaan,
             'jawaban' => $request->jawaban,
         ]);
+
+        $faq = Faq::findOrFail(Qna::findOrFail($id)->faq_id);
     
-        return redirect('/admin/FAQ/all/' . $qna->faq_id)->with('success', 'Qna berhasil diperbarui.');
+        return redirect('/admin/FAQ/all/' . $faq->konten_id)->with('success', 'Qna berhasil diperbarui.');
     }
     
     public function deleteQna($id)
