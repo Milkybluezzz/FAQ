@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="border-t border-white mt-8 pt-4 flex justify-between items-center">
-                <p class="text-sm">&copy; 2023 Diskominfo Kota Bandung. All rights reserved.</p>
+                <p class="text-sm">&copy; 2024 Diskominfo Kota Bandung. All rights reserved.</p>
                 <div class="flex space-x-4">
                     <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
                     <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
