@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminAuthController;
@@ -71,3 +72,23 @@ Route::controller(AdminAuthController::class)->group(function () {
     Route::post('/admin/QnA/delete/{id}', 'deleteQna');
 
 });
+
+Route::get('/dashboard', function () {
+    return redirect('/admin/dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
+
+// Tambahkan route admin Anda di bawah ini
+Route::controller(AdminAuthController::class)
+    ->middleware('auth')
+    ->group(function () {
+        Route::get('/admin/dashboard', 'dashboard');
+        // Route lainnya...
+    });

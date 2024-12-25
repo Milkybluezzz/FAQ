@@ -44,4 +44,10 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+    protected $redirectTo = '/admin/dashboard';
+    protected function redirectTo()
+    {
+    return '/admin/dashboard';
+    }
+
 }
