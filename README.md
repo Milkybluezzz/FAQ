@@ -21,7 +21,11 @@
 
 1. Clone repositori:
    ```bash
+   
    git clone https://github.com/milkybluezzz/FAQ.git
+=======
+   git clone https://github.com/Milkybluezzz/FAQ.git
+
    ```
 2. Masuk ke direktori proyek:
    ```bash
